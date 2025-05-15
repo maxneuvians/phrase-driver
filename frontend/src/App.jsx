@@ -179,6 +179,7 @@ export default function App() {
                             value={sentence}
                             onChange={e => setSentence(e.target.value)}
                             disabled={!!evaluation || loading}
+                            spellcheck="false"
                         />
                     </div>
                     <button
@@ -235,6 +236,7 @@ export default function App() {
                                 className="pd-eval-correct-input"
                                 value={correctionInput}
                                 onChange={e => setCorrectionInput(e.target.value)}
+                                spellcheck="false"
                             />
                             <button
                                 onClick={handleSave}
