@@ -6,7 +6,7 @@ backend:
 	cd backend && node index.js
 
 frontend:
-	cd frontend && npm run dev
+	cd frontend && npm run dev -- --host 0.0.0.0
 
 dev:
 	# Run both backend and frontend in parallel

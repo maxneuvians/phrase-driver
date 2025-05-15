@@ -1,5 +1,5 @@
 // Mock LLM evaluation controller
-const { getCopilotSessionToken, callCopilotLLM } = require('../models/copilot');
+const { getCopilotSessionToken, callCopilotLLM, getCopilotModels } = require('../models/copilot');
 const axios = require('axios');
 let copilotSession = null;
 let copilotSessionExpiry = 0;
@@ -52,10 +52,11 @@ async function evaluateSentenceController(req, res) {
     let llmResponse;
     try {
         const session = await getValidCopilotSession();
+        //console.log('LLM API call:', await getCopilotModels(session.token));
         llmResponse = await callCopilotLLM({
             token: session.token,
             prompt,
-            model: 'gpt-4o',
+            model: 'claude-3.7-sonnet',
             temperature: 0.2,
             top_p: 1.0,
             n: 1,
