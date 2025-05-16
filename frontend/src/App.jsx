@@ -81,20 +81,20 @@ export default function App() {
         <div className="pd-main">
             <h1 className="pd-title">Phrase Driver</h1>
             <div className="pd-row">
-                <label className="pd-label">Category:</label>
+                <label className="pd-label">Catégorie&nbsp;:</label>
                 <select value={selectedCategory} onChange={e => setSelectedCategory(e.target.value)} className="pd-select">
-                    <option value="">Select...</option>
+                    <option value="">Sélectionner...</option>
                     {categories.map(cat => (
                         <option key={cat} value={cat}>{cat}</option>
                     ))}
                 </select>
-                <button onClick={pickRandomWord} disabled={!words.length} className="pd-btn">Pick Random Word</button>
+                <button onClick={pickRandomWord} disabled={!words.length} className="pd-btn">Choisir un mot aléatoire</button>
             </div>
             <div className="pd-criteria-card">
-                <label className="pd-criteria-label">Additional Criteria:</label>
+                <label className="pd-criteria-label">Critères supplémentaires&nbsp;:</label>
                 <div className="pd-criteria-row">
                     <div>
-                        <label style={{ fontWeight: 500 }}>Tense:</label>
+                        <label style={{ fontWeight: 500 }}>Temps&nbsp;:</label>
                         <select
                             value={criteria.find(c => c.startsWith('tense:'))?.replace('tense:', '') || ''}
                             onChange={e => {
@@ -105,14 +105,14 @@ export default function App() {
                             }}
                             className="pd-criteria-select"
                         >
-                            <option value="">None</option>
-                            <option value="present">Present</option>
-                            <option value="passe compose">Passe compose</option>
+                            <option value="">Aucun</option>
+                            <option value="present">Présent</option>
+                            <option value="passe compose">Passé composé</option>
                             <option value="imparfait">Imparfait</option>
-                            <option value="future proche">Future proche</option>
-                            <option value="future simple">Future simple</option>
-                            <option value="conditional present">Conditional present</option>
-                            <option value="subjunctive present">Subjunctive present</option>
+                            <option value="future proche">Futur proche</option>
+                            <option value="future simple">Futur simple</option>
+                            <option value="conditional present">Conditionnel présent</option>
+                            <option value="subjunctive present">Subjonctif présent</option>
                         </select>
                     </div>
                     <div>
@@ -129,7 +129,7 @@ export default function App() {
                                 }}
                                 style={{ marginRight: 6 }}
                             />
-                            Negation
+                            Négation
                         </label>
                     </div>
                     <div>
@@ -146,7 +146,7 @@ export default function App() {
                                 }}
                                 style={{ marginRight: 6 }}
                             />
-                            Interrogative (Question)
+                            Interrogatif (Question)
                         </label>
                     </div>
                     <div>
@@ -163,23 +163,23 @@ export default function App() {
                                 }}
                                 style={{ marginRight: 6 }}
                             />
-                            Imperative (Command)
+                            Impératif (Commande)
                         </label>
                     </div>
                 </div>
             </div>
             {currentWord && (
                 <div style={{ marginTop: 18, marginBottom: 10 }}>
-                    <div className="pd-word"><b>Word:</b> <span className="pd-word-french">{currentWord.french}</span> <span className="pd-word-english">({currentWord.english})</span></div>
+                    <div className="pd-word"><b>Mot&nbsp;:</b> <span className="pd-word-french">{currentWord.french}</span> <span className="pd-word-english">({currentWord.english})</span></div>
                     <div style={{ margin: '10px 0' }}>
                         <textarea
                             rows={3}
                             className="pd-textarea"
-                            placeholder="Type your sentence..."
+                            placeholder="Écrivez votre phrase..."
                             value={sentence}
                             onChange={e => setSentence(e.target.value)}
                             disabled={!!evaluation || loading}
-                            spellcheck="false"
+                            spellCheck="false"
                         />
                     </div>
                     <button
@@ -191,23 +191,23 @@ export default function App() {
                         {loading ? (
                             <span style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
                                 <span className="pd-spinner" style={{ width: 18, height: 18, border: '3px solid #b3c7e6', borderTop: '3px solid #2d72d9', borderRadius: '50%', animation: 'pd-spin 1s linear infinite', display: 'inline-block' }}></span>
-                                Loading...
+                                Chargement...
                             </span>
                         ) : (
-                            'Submit Sentence'
+                            'Soumettre la phrase'
                         )}
                     </button>
                 </div>
             )}
             {evaluation && (
                 <div className="pd-eval-card">
-                    <h3 className="pd-eval-title">Evaluation</h3>
-                    <div className="pd-eval-row"><b>Original:</b> <span style={{ color: '#333' }}>{evaluation.original}</span></div>
-                    <div className="pd-eval-row"><b>Corrected:</b> <span className="pd-eval-corrected">{evaluation.corrected}</span></div>
-                    <div className="pd-eval-explanation"><b>Explanation:</b> <span>{evaluation.explanation}</span></div>
+                    <h3 className="pd-eval-title">Évaluation</h3>
+                    <div className="pd-eval-row"><b>Original&nbsp;:</b> <span style={{ color: '#333' }}>{evaluation.original}</span></div>
+                    <div className="pd-eval-row"><b>Corrigé&nbsp;:</b> <span className="pd-eval-corrected">{evaluation.corrected}</span></div>
+                    <div className="pd-eval-explanation"><b>Explication&nbsp;:</b> <span>{evaluation.explanation}</span></div>
                     {evaluation.changes.length > 0 && (
                         <div className="pd-eval-changes" style={{ marginTop: 18 }}>
-                            <b>Changes:</b>
+                            <b>Modifications&nbsp;:</b>
                             <div className="pd-eval-changes-list" style={{ display: 'flex', flexDirection: 'column', gap: 12, marginTop: 10 }}>
                                 {evaluation.changes.map((chg, i) => (
                                     <div key={i} className="pd-eval-changes-item" style={{ display: 'flex', alignItems: 'flex-start', gap: 8, background: '#f2f6fc', borderRadius: 7, padding: '10px 14px' }}>
@@ -231,21 +231,21 @@ export default function App() {
                     )}
                     {evaluation.changes.length > 0 && acknowledged.length === evaluation.changes.length && (
                         <div style={{ margin: '16px 0 0 0' }}>
-                            <b>Type the corrected sentence:</b>
+                            <b>Recopiez la phrase corrigée&nbsp;:</b>
                             <input
                                 className="pd-eval-correct-input"
                                 value={correctionInput}
                                 onChange={e => setCorrectionInput(e.target.value)}
-                                spellcheck="false"
+                                spellCheck="false"
                             />
                             <button
                                 onClick={handleSave}
                                 disabled={correctionInput.trim() !== evaluation.corrected.trim() || saved}
                                 className="pd-eval-save-btn"
                             >
-                                Save Result
+                                Enregistrer le résultat
                             </button>
-                            {saved && <span className="pd-eval-saved">Saved!</span>}
+                            {saved && <span className="pd-eval-saved">Enregistré&nbsp;!</span>}
                         </div>
                     )}
                     {evaluation.changes.length === 0 && (
@@ -255,9 +255,9 @@ export default function App() {
                                 disabled={saved}
                                 className="pd-eval-save-btn"
                             >
-                                Save Result
+                                Enregistrer le résultat
                             </button>
-                            {saved && <span className="pd-eval-saved">Saved!</span>}
+                            {saved && <span className="pd-eval-saved">Enregistré&nbsp;!</span>}
                         </div>
                     )}
                 </div>
