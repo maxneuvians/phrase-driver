@@ -204,6 +204,9 @@ export default function App() {
                     <h3 className="pd-eval-title">Évaluation</h3>
                     <div className="pd-eval-row"><b>Original&nbsp;:</b> <span style={{ color: '#333' }}>{evaluation.original}</span></div>
                     <div className="pd-eval-row"><b>Corrigé&nbsp;:</b> <span className="pd-eval-corrected">{evaluation.corrected}</span></div>
+                    {evaluation.english && (
+                        <div className="pd-eval-row"><b>Traduction anglaise&nbsp;:</b> <span className="pd-eval-english">{evaluation.english}</span></div>
+                    )}
                     <div className="pd-eval-explanation"><b>Explication&nbsp;:</b> <span>{evaluation.explanation}</span></div>
                     {evaluation.changes.length > 0 && (
                         <div className="pd-eval-changes" style={{ marginTop: 18 }}>

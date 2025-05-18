@@ -46,7 +46,7 @@ async function evaluateSentenceController(req, res) {
             }
         }
     }
-    const prompt = `You are a French language teacher.\n\nEvaluate the following sentence written by a student.\n\nFrench word or phrase: ${word}\n\nStudent sentence: ${sentence}\n\nEvaluation criteria:\n- Is the sentence a complete sentence\n- Does the sentence capture the meaning of the vocabulary word or phrase\n- Is the sentence grammatically correct${criteriaText}\n\nIf the sentence is not correct, provide a corrected version.\n\nRespond in the following JSON format:\n{\n  "original": <original sentence>,\n  "corrected": <corrected sentence>,\n  "changes": [ { "from": <original>, "to": <corrected>, "reason": <why changed> }, ... ],\n  "explanation": <explanation of why the original meets or does not meet the criteria>\n}`;
+    const prompt = `You are a French language teacher.\n\nEvaluate the following sentence written by a student.\n\nFrench word or phrase: ${word}\n\nStudent sentence: ${sentence}\n\nEvaluation criteria:\n- Is the sentence a complete sentence\n- Does the sentence capture the meaning of the vocabulary word or phrase\n- Is the sentence grammatically correct${criteriaText}\n\nIf the sentence is not correct, provide a corrected version.\n\nRespond in the following JSON format:\n{\n  "original": <original sentence>,\n  "corrected": <corrected sentence>,\n  "changes": [ { "from": <original>, "to": <corrected>, "reason": <why changed> }, ... ],\n  "explanation": <explanation of why the original meets or does not meet the criteria>,\n  "english": <the English translation of the original sentence>\n}`;
 
     // LLM API call
     let llmResponse;
