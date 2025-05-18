@@ -13,6 +13,7 @@ export default function App() {
     const [correctionInput, setCorrectionInput] = useState('');
     const [saved, setSaved] = useState(false);
     const [loading, setLoading] = useState(false);
+    const [showFrench, setShowFrench] = useState(false);
 
     useEffect(() => {
         getCategories().then(setCategories);
@@ -33,6 +34,7 @@ export default function App() {
             setAcknowledged([]);
             setCorrectionInput('');
             setSaved(false);
+            setShowFrench(false); // Reset reveal state
         }
     }
 
@@ -46,6 +48,7 @@ export default function App() {
             category: selectedCategory,
         };
         try {
+            setShowFrench(true); // Reveal French word with evaluation
             const result = await evaluateSentence(data);
             setEvaluation(result);
         } finally {
@@ -170,7 +173,25 @@ export default function App() {
             </div>
             {currentWord && (
                 <div style={{ marginTop: 18, marginBottom: 10 }}>
-                    <div className="pd-word"><b>Mot&nbsp;:</b> <span className="pd-word-french">{currentWord.french}</span> <span className="pd-word-english">({currentWord.english})</span></div>
+                    <div className="pd-word">
+                        <b>Mot&nbsp;:</b>
+                        {showFrench ? (
+                            <>
+                                <span className="pd-word-french">{currentWord.french}</span> <span className="pd-word-english">({currentWord.english})</span>
+                            </>
+                        ) : (
+                            <>
+                                <span className="pd-word-english">({currentWord.english})</span>
+                                <button
+                                    className="pd-btn pd-reveal-btn"
+                                    style={{ marginLeft: 12, fontSize: 14, padding: '2px 10px' }}
+                                    onClick={() => setShowFrench(true)}
+                                >
+                                    Révéler le mot français
+                                </button>
+                            </>
+                        )}
+                    </div>
                     <div style={{ margin: '10px 0' }}>
                         <textarea
                             rows={3}
